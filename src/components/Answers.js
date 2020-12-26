@@ -1,35 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Answer from './Answer'
-import { data } from '../data'
 
-function Answers() {
-  const [correct, setCorrect] = useState(false)
-  const [disabled, setDisabled] = useState(false)
-  const handleChange = (correct, event) => {
-    if (event.target.value === correct) {
-      setCorrect(true)
-    } else {
-      setCorrect(false)
-    }
-  }
+function Answers({ question, handleChange }) {
+  const { answers, correct } = question
+  console.log(answers, correct)
   return (
     <div className="">
-      <h4>Answers:</h4>
+      <h5>Antwoorden:</h5>
       <form>
-        <div>
-          {data.map((question, index) => {
-            return (
-              <Answer
-                key={index}
-                question={question}
-                handleChange={handleChange}
-                disabled={disabled}
-              />
-            )
-          })}
-        </div>
+        {Object.keys(answers).map((key) => {
+          return (
+            <Answer
+              answer={answers[key]}
+              ansKey={key}
+              correct={correct}
+              handleChange={handleChange}
+              key={key}
+            />
+          )
+        })}
       </form>
-      {correct && <div className="alert alert-success"> CORRECT </div>}
     </div>
   )
 }

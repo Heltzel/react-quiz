@@ -1,30 +1,24 @@
 import React from 'react'
 
-function Answer({ question, handleChange, disabled }) {
-  const { answers, correct } = question
-
+function Answer({ answer, ansKey, correct, handleChange }) {
+  console.log(ansKey)
   return (
     <div className="form-group">
-      {Object.keys(answers).map((key) => {
-        return (
-          <div className="custom-control custom- my-2" key={key}>
-            <div className="custom-control custom-radio">
-              <input
-                type="radio"
-                id="customRadio1"
-                name="answer"
-                className="custom-control-input"
-                value={key}
-                onChange={(evt) => handleChange(correct, evt)}
-                disabled={disabled}
-              />
-              <label className="custom-control-label mx-5" htmlFor={key}>
-                {answers[key]}
-              </label>
-            </div>
-          </div>
-        )
-      })}
+      <div className="custom-control custom- my-2">
+        <div className="custom-control custom-radio">
+          <input
+            type="radio"
+            id={answer}
+            name="answer"
+            className="custom-control-input"
+            value={ansKey}
+            onChange={(evt) => handleChange(correct, evt)}
+          />
+          <label className="custom-control-label mx-3" htmlFor={answer}>
+            {answer}
+          </label>
+        </div>
+      </div>
     </div>
   )
 }
